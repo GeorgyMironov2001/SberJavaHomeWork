@@ -1,31 +1,16 @@
 package ru.sber.mironov;
 
-import netscape.javascript.JSObject;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import ru.sber.mironov.ClientType.ClientType;
-import ru.sber.mironov.Clients.Client;
-import ru.sber.mironov.Clients.HoldingClient;
-import ru.sber.mironov.Clients.IndividualClient;
-import ru.sber.mironov.Clients.LegalEntityClient;
 import ru.sber.mironov.ClientsJsonParser.ClientsJsonParser;
 
-import org.apache.commons.io.FileUtils;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        String[] a = {"1", "2", "3"};
+        ArrayList<String> q = new ArrayList<>(List.of(a));
+
 
         //ArrayList<Client> clients = (ArrayList<Client>) List.of(new IndividualClient("Alex", "1688", ClientType.INDIVIDUAL),
         //        new LegalEntityClient("Vadim", "1432", ClientType.LEGAL_ENTITY),
@@ -52,12 +37,43 @@ public class Main {
         arr.put(third);*/
         //Files.writeString(Paths.get("src/main/resources/Clients.json"), arr.toString());
 
-        File file = new File(args[0]);
-        var people = ClientsJsonParser.parseClientsJson(file);
-        for (Client x : people) {
-            System.out.println(x);
+        /*String filePath = args[0];
+        StringBuilder fileData = new StringBuilder();
+        BufferedReader reader = new BufferedReader(
+                new FileReader(filePath));
+        char[] buf = new char[1024];
+        int numRead = 0;
+        while ((numRead = reader.read(buf)) != -1) {
+            String readData = String.valueOf(buf, 0, numRead);
+            fileData.append(readData);
+        }
+        reader.close();
+        String content = fileData.toString();
+        System.out.println(content);
+
+        Pattern pattern = Pattern.compile("\\{.+?}");
+        Matcher matcher = pattern.matcher(content);
+        ArrayList<String> c = new ArrayList<>();
+        while (matcher.find()) {
+            c.add(content.substring(matcher.start(), matcher.end()));
+            System.out.println(content.substring(matcher.start(), matcher.end()));
         }
 
+        Pattern pattern1 = Pattern.compile("\".+?\":\".+?\"");
+        for (var s : c) {
+            Matcher matcher1 = pattern1.matcher(s);
+            while (matcher1.find()) {
+                System.out.println(s.substring(matcher1.start(), matcher1.end()));
+                String[] str = s.substring(matcher1.start(), matcher1.end()).split(":");
+                for (int i = 0; i < 2; ++i) {
+                    str[i] = str[i].substring(1, str[i].length() - 1);
+                }
+                System.out.println(Arrays.toString(str));
+            }
+        }*/
+
+        var people = ClientsJsonParser.parseClientsJson((args[0]));
+        System.out.println(people);
     }
 }
 

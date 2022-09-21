@@ -1,6 +1,6 @@
 package ru.sber.mironov.Clients;
 
-import org.json.JSONObject;
+
 import ru.sber.mironov.ClientType.ClientType;
 
 
@@ -20,7 +20,4 @@ public class IndividualClient extends Client {
         super((String)client.get(0), (String)client.get(1), ClientType.INDIVIDUAL);
     }
 
-    private static void parse(JSONObject client) {
-
-    }
 }

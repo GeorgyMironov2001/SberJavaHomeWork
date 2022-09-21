@@ -1,13 +1,12 @@
 package ru.sber.mironov.ClientsJsonParser;
 
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import ru.sber.mironov.ClientType.ClientType;
 import ru.sber.mironov.Clients.Client;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,9 +16,9 @@ public class ClientsJsonParserTest {
 
     @Before
     public void setUpPeople() throws IOException {
-        String fileName = "./src/test/resources/Clients.json";
-        File file = new File(fileName);
-        people = ClientsJsonParser.parseClientsJson(file);
+        String fileName = "src/test/resources/Clients.json";
+
+        people = ClientsJsonParser.parseClientsJson(fileName);
     }
 
     @After

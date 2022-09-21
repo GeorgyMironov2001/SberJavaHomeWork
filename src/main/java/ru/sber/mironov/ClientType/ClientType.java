@@ -1,44 +1,46 @@
 package ru.sber.mironov.ClientType;
 
-import org.json.JSONObject;
+
 import ru.sber.mironov.Clients.Client;
 import ru.sber.mironov.Clients.HoldingClient;
 import ru.sber.mironov.Clients.IndividualClient;
 import ru.sber.mironov.Clients.LegalEntityClient;
+import ru.sber.mironov.MyJsonLibrary.MyJsonObject;
+
 
 import java.util.List;
 
 public enum ClientType {
     INDIVIDUAL("INDIVIDUAL") {
-        private List<Object> parseClient(JSONObject client) {
+        private List<Object> parseClient(MyJsonObject client) {
             String name = client.getString("name");
             String inn = client.getString("inn");
             return List.of(name, inn);
         }
 
-        public Client createClient(JSONObject client) {
+        public Client createClient(MyJsonObject client) {
             return new IndividualClient(this.parseClient(client));
         }
     },
     LEGAL_ENTITY("LEGAL_ENTITY") {
-        private List<Object> parseClient(JSONObject client) {
+        private List<Object> parseClient(MyJsonObject client) {
             String name = client.getString("name");
             String inn = client.getString("inn");
             return List.of(name, inn);
         }
 
-        public Client createClient(JSONObject client) {
+        public Client createClient(MyJsonObject client) {
             return new LegalEntityClient(this.parseClient(client));
         }
     },
     HOLDING("HOLDING") {
-        List<Object> parseClient(JSONObject client) {
+        List<Object> parseClient(MyJsonObject client) {
             String name = client.getString("name");
             String inn = client.getString("inn");
             return List.of(name, inn);
         }
 
-        public Client createClient(JSONObject client) {
+        public Client createClient(MyJsonObject client) {
             return new HoldingClient(parseClient(client));
         }
     };
@@ -53,5 +55,6 @@ public enum ClientType {
         this.type = description;
     }
 
-    public abstract Client createClient(JSONObject client);
+    public abstract Client createClient(MyJsonObject client);
 }
+
