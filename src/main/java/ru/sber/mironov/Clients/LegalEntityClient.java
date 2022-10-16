@@ -1,19 +1,24 @@
 package ru.sber.mironov.Clients;
 
 
-
 import ru.sber.mironov.ClientType.ClientType;
-
-import java.util.List;
+import ru.sber.mironov.MyJsonLibrary.MyJsonObject;
 
 public class LegalEntityClient extends Client {
 
+    private final Boolean realLegal;
 
-    public LegalEntityClient(String name, String inn, ClientType type) {
+    public LegalEntityClient(String name, String inn, ClientType type, Boolean realLegal) {
         super(name, inn, type);
+        this.realLegal = realLegal;
     }
 
-    public LegalEntityClient(List<Object> client) {
-        super((String) client.get(0), (String) client.get(1), ClientType.LEGAL_ENTITY);
+    public LegalEntityClient(MyJsonObject client) {
+        super(client);
+        realLegal = Boolean.parseBoolean(client.getString("realLegsl"));
+    }
+
+    public Boolean getRealLegal() {
+        return realLegal;
     }
 }

@@ -2,22 +2,25 @@ package ru.sber.mironov.Clients;
 
 
 import ru.sber.mironov.ClientType.ClientType;
+import ru.sber.mironov.MyJsonLibrary.MyJsonObject;
 
 
-import java.util.List;
+import java.util.HashMap;
 
 public class IndividualClient extends Client {
+    private final int salary;
 
-    public IndividualClient(String name, String inn, ClientType type) {
+    public IndividualClient(String name, String inn, ClientType type, int salary) {
         super(name, inn, type);
+        this.salary = salary;
     }
 
-    public IndividualClient(String description) {
-        super("Gera", "1688", ClientType.INDIVIDUAL);
+    public IndividualClient(MyJsonObject client) {
+        super(client);
+        this.salary = Integer.parseInt(client.getString("salary"));
     }
 
-    public IndividualClient(List<Object> client) {
-        super((String)client.get(0), (String)client.get(1), ClientType.INDIVIDUAL);
+    public int getSalary() {
+        return salary;
     }
-
 }

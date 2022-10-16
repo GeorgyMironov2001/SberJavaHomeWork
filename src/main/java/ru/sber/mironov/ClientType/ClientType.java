@@ -8,52 +8,25 @@ import ru.sber.mironov.Clients.LegalEntityClient;
 import ru.sber.mironov.MyJsonLibrary.MyJsonObject;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 public enum ClientType {
-    INDIVIDUAL("INDIVIDUAL") {
-        private List<Object> parseClient(MyJsonObject client) {
-            String name = client.getString("name");
-            String inn = client.getString("inn");
-            return List.of(name, inn);
-        }
-
+    INDIVIDUAL {
         public Client createClient(MyJsonObject client) {
-            return new IndividualClient(this.parseClient(client));
+            return new IndividualClient(client);
         }
     },
-    LEGAL_ENTITY("LEGAL_ENTITY") {
-        private List<Object> parseClient(MyJsonObject client) {
-            String name = client.getString("name");
-            String inn = client.getString("inn");
-            return List.of(name, inn);
-        }
-
+    LEGAL_ENTITY {
         public Client createClient(MyJsonObject client) {
-            return new LegalEntityClient(this.parseClient(client));
+            return new LegalEntityClient(client);
         }
     },
-    HOLDING("HOLDING") {
-        List<Object> parseClient(MyJsonObject client) {
-            String name = client.getString("name");
-            String inn = client.getString("inn");
-            return List.of(name, inn);
-        }
-
+    HOLDING {
         public Client createClient(MyJsonObject client) {
-            return new HoldingClient(parseClient(client));
+            return new HoldingClient(client);
         }
     };
-    public final String type;
-
-    /*List<Object> parseClient(JSONObject client) {
-        String name = client.getString("name");
-        String inn = client.getString("inn");
-        return List.of(name, inn);
-    }*/
-    ClientType(String description) {
-        this.type = description;
-    }
 
     public abstract Client createClient(MyJsonObject client);
 }

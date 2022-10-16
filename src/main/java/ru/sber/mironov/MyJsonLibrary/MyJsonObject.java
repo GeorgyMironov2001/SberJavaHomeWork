@@ -14,15 +14,16 @@ public class MyJsonObject {
 
     public MyJsonObject(String str) {
         Map<String, String> newMap = new HashMap<>();
-        Pattern pattern = Pattern.compile("\".+?\":\".+?\"");
-        Matcher matcher = pattern.matcher(str);
-        while (matcher.find()) {
-            String[] s = str.substring(matcher.start(), matcher.end()).split(":");
-            for(int i = 0; i < 2; ++i) {
-                s[i] = s[i].substring(1, s[i].length()-1);
-            }
-
-            newMap.put(s[0], s[1]);
+        String[] strings = str.split(",");
+        for (var s : strings) {
+            String[] splitString = s.replace("\s", "")
+                    .replace("{", "")
+                    .replace("}", "")
+                    .replace("\"", "")
+                    .replace(",", "")
+                    .replaceAll("[ \\f\\n\\r\\t\\v]", "")
+                    .split(":");
+            newMap.put(splitString[0], splitString[1]);
         }
         map = newMap;
     }
