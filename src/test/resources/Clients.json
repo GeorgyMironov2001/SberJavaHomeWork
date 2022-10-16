@@ -1,0 +1,20 @@
+[
+  {
+    "ClientType": "INDIVIDUAL",
+    "inn": "1688",
+    "name": "Alex",
+    "salary": 100
+  },
+  {
+    "ClientType": "LEGAL_ENTITY",
+    "name": "Vadim",
+    "inn": "1432",
+    "realLegal": false
+  },
+  {
+    "ClientType": "HOLDING",
+    "name": "Gera",
+    "inn": "2001",
+    "level": 34.5
+  }
+]
